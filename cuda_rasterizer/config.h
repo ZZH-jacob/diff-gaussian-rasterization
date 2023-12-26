@@ -11,7 +11,7 @@
 #define CUDA_RASTERIZER_CONFIG_H_INCLUDED
 
 #define NUM_CHANNELS 3 // Default 3, RGB
-#define NUM_OBJECTS 16 // Default 16, identity encoding
+#define NUM_OBJECTS 64 // Default 16, identity encoding
 #define BLOCK_X 16
 #define BLOCK_Y 16
 
