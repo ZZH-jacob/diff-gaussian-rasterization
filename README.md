@@ -5,3 +5,5 @@ Modified by Gaussian-Grouping https://github.com/lkeab/gaussian-grouping and htt
 Used as the rasterization engine for the paper "3D Gaussian Splatting for Real-Time Rendering of Radiance Fields". If you can make use of it in your own research, please be so kind to cite us.
 
 it renders alpha and image id.
+
+inorder to get bigger NUM_OBJECTS , i reduce the size of block(16->8)
