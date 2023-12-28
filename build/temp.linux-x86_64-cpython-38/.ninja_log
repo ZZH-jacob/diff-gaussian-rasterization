@@ -1,6 +1,0 @@
-# ninja log v5
-0	1722	1703754042294135664	/home/v-zihanzheng/code/temp/gaussian-grouping/temp/diff-gaussian-rasterization-mine/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/backward.o	fd66929bde2812af
-0	6658	1703754047226148801	/home/v-zihanzheng/code/temp/gaussian-grouping/temp/diff-gaussian-rasterization-mine/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/rasterizer_impl.o	20cc187a2288615e
-0	19502	1703754060058183595	/home/v-zihanzheng/code/temp/gaussian-grouping/temp/diff-gaussian-rasterization-mine/build/temp.linux-x86_64-cpython-38/ext.o	a77f5a74eb536b4
-0	54100	1703754094666271623	/home/v-zihanzheng/code/temp/gaussian-grouping/temp/diff-gaussian-rasterization-mine/build/temp.linux-x86_64-cpython-38/rasterize_points.o	463809fd401e755b
-14	1500	1703754103198294230	/home/v-zihanzheng/code/temp/gaussian-grouping/temp/diff-gaussian-rasterization-mine/build/temp.linux-x86_64-cpython-38/cuda_rasterizer/forward.o	2fc3420bffd75a53
