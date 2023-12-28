@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2023, Gaussian-Grouping
- * Gaussian-Grouping research group, https://github.com/lkeab/gaussian-grouping
- * All rights reserved.
- * ------------------------------------------------------------------------
- * Modified from codes in Gaussian-Splatting 
+ * Copyright (C) 2023, Inria
  * GRAPHDECO research group, https://team.inria.fr/graphdeco
+ * All rights reserved.
+ *
+ * This software is free for non-commercial, research and evaluation use 
+ * under the terms of the LICENSE.md file.
+ *
+ * For inquiries contact  george.drettakis@inria.fr
  */
-
-
 
 #ifndef CUDA_RASTERIZER_BACKWARD_H_INCLUDED
 #define CUDA_RASTERIZER_BACKWARD_H_INCLUDED
@@ -30,10 +30,11 @@ namespace BACKWARD
 		const float4* conic_opacity,
 		const float* colors,
 		const float* objects,
-		const float* final_Ts,
+		const float* alphas,
 		const uint32_t* n_contrib,
 		const float* dL_dpixels,
 		const float* dL_dpixels_objs,
+		const float* dL_dalphas,
 		float3* dL_dmean2D,
 		float4* dL_dconic2D,
 		float* dL_dopacity,

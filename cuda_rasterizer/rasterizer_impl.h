@@ -1,10 +1,12 @@
 /*
- * Copyright (C) 2023, Gaussian-Grouping
- * Gaussian-Grouping research group, https://github.com/lkeab/gaussian-grouping
- * All rights reserved.
- * ------------------------------------------------------------------------
- * Modified from codes in Gaussian-Splatting 
+ * Copyright (C) 2023, Inria
  * GRAPHDECO research group, https://team.inria.fr/graphdeco
+ * All rights reserved.
+ *
+ * This software is free for non-commercial, research and evaluation use 
+ * under the terms of the LICENSE.md file.
+ *
+ * For inquiries contact  george.drettakis@inria.fr
  */
 
 
@@ -48,7 +50,6 @@ namespace CudaRasterizer
 	{
 		uint2* ranges;
 		uint32_t* n_contrib;
-		float* accum_alpha;
 
 		static ImageState fromChunk(char*& chunk, size_t N);
 	};

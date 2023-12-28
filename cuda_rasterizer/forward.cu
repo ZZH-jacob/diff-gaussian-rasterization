@@ -1,10 +1,12 @@
 /*
- * Copyright (C) 2023, Gaussian-Grouping
- * Gaussian-Grouping research group, https://github.com/lkeab/gaussian-grouping
- * All rights reserved.
- * ------------------------------------------------------------------------
- * Modified from codes in Gaussian-Splatting 
+ * Copyright (C) 2023, Inria
  * GRAPHDECO research group, https://team.inria.fr/graphdeco
+ * All rights reserved.
+ *
+ * This software is free for non-commercial, research and evaluation use 
+ * under the terms of the LICENSE.md file.
+ *
+ * For inquiries contact  george.drettakis@inria.fr
  */
 
 #include "forward.h"
@@ -267,7 +269,7 @@ renderCUDA(
 	const float* __restrict__ features,
 	const float* __restrict__ obj_features,
 	const float4* __restrict__ conic_opacity,
-	float* __restrict__ final_T,
+	float* __restrict__ out_alpha,
 	uint32_t* __restrict__ n_contrib,
 	const float* __restrict__ bg_color,
 	float* __restrict__ out_color,
@@ -303,6 +305,7 @@ renderCUDA(
 	uint32_t last_contributor = 0;
 	float C[CHANNELS] = { 0 };
 	float O[OBJECTS] = { 0 };	//rendered object
+	float weight = 0;
 
 	// Iterate over batches until all done or range is complete
 	for (int i = 0; i < rounds; i++, toDo -= BLOCK_SIZE)
@@ -357,6 +360,7 @@ renderCUDA(
 				C[ch] += features[collected_id[j] * CHANNELS + ch] * alpha * T;}
 			for (int ch = 0; ch < OBJECTS; ch++){
 				O[ch] += obj_features[collected_id[j] * OBJECTS + ch] * alpha * T;}
+			weight += alpha * T;
 
 			T = test_T;
 
@@ -370,13 +374,13 @@ renderCUDA(
 	// rendering data to the frame and auxiliary buffers.
 	if (inside)
 	{
-		final_T[pix_id] = T;
 		n_contrib[pix_id] = last_contributor;
 		for (int ch = 0; ch < CHANNELS; ch++){
 			out_color[ch * H * W + pix_id] = C[ch] + T * bg_color[ch];}
 		for (int ch = 0; ch < OBJECTS; ch++){
 			out_objects[ch * H * W + pix_id] = O[ch];}
-		
+
+		out_alpha[pix_id] = weight; //1 - T;
 	}
 }
 
@@ -389,7 +393,7 @@ void FORWARD::render(
 	const float* colors,
 	const float* objects,
 	const float4* conic_opacity,
-	float* final_T,
+	float* out_alpha,
 	uint32_t* n_contrib,
 	const float* bg_color,
 	float* out_color,
@@ -403,7 +407,7 @@ void FORWARD::render(
 		colors,
 		objects,
 		conic_opacity,
-		final_T,
+		out_alpha,
 		n_contrib,
 		bg_color,
 		out_color,

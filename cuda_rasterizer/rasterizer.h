@@ -1,10 +1,12 @@
 /*
- * Copyright (C) 2023, Gaussian-Grouping
- * Gaussian-Grouping research group, https://github.com/lkeab/gaussian-grouping
- * All rights reserved.
- * ------------------------------------------------------------------------
- * Modified from codes in Gaussian-Splatting 
+ * Copyright (C) 2023, Inria
  * GRAPHDECO research group, https://team.inria.fr/graphdeco
+ * All rights reserved.
+ *
+ * This software is free for non-commercial, research and evaluation use 
+ * under the terms of the LICENSE.md file.
+ *
+ * For inquiries contact  george.drettakis@inria.fr
  */
 
 #ifndef CUDA_RASTERIZER_H_INCLUDED
@@ -49,6 +51,7 @@ namespace CudaRasterizer
 			const bool prefiltered,
 			float* out_color,
 			float* out_objects,
+			float* out_alpha,
 			int* radii = nullptr,
 			bool debug = false);
 
@@ -60,6 +63,7 @@ namespace CudaRasterizer
 			const float* shs,
 			const float* sh_objs,
 			const float* colors_precomp,
+			const float* alphas,
 			const float* scales,
 			const float scale_modifier,
 			const float* rotations,
@@ -74,6 +78,7 @@ namespace CudaRasterizer
 			char* image_buffer,
 			const float* dL_dpix,
 			const float* dL_dpix_obj,
+			const float* dL_dalphas,
 			float* dL_dmean2D,
 			float* dL_dconic,
 			float* dL_dopacity,
