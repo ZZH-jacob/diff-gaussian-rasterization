@@ -440,6 +440,7 @@ renderCUDA(
 	__shared__ float4 collected_conic_opacity[BLOCK_SIZE];
 	__shared__ float collected_colors[C * BLOCK_SIZE];
 	__shared__ float collected_objects[O * BLOCK_SIZE];
+	// float collected_objects[O * BLOCK_SIZE];
 
 	// In the forward, we stored the final value for T, the
 	// product of all (1 - alpha) factors. 
@@ -462,8 +463,8 @@ renderCUDA(
 			dL_dpixel[i] = dL_dpixels[i * H * W + pix_id];
 		for (int i = 0; i < O; i++)
 			dL_dpixel_obj[i] = dL_dpixels_objs[i * H * W + pix_id];
-	if(inside)
 		dL_dalpha = dL_dalphas[pix_id];
+		
 	float last_alpha = 0;
 	float last_color[C] = { 0 };
 	float last_object[O] = { 0 };
